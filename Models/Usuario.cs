@@ -1,25 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Loor_Lalama.Models
+namespace Loor_Lalama.Models;
+
+public partial class Usuario
 {
-    public class Usuario
-    {
+    public int Id { get; set; }
 
-        public int Id { get; set; }
-        [Required]
-        [Column(TypeName ="varchar(10)")]
+    public string NombreUsuario { get; set; } = null!;
 
-        public string NombreUsuario { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(10)")]
+    public string Clave { get; set; } = null!;
 
-        public string clave { get; set; }
-        [Required]
+    public bool Estado { get; set; }
 
-        public Boolean estado { get; set; }
+    public int GeneroId { get; set; }
 
-        public int GeneroId { get; set; }
-        public Genero Genero { get; set; }
-    }
+    public virtual Genero Genero { get; set; } = null!;
+
+    public virtual ICollection<HistorialAcceso> HistorialAccesos { get; set; } = new List<HistorialAcceso>();
 }
